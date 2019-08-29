@@ -42,9 +42,12 @@ exports.levelCacheInterface = {
         var res, value;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, storage.get(key)];
+                case 0: return [4 /*yield*/, storage.get(key)
+                        .catch(function () { return undefined; })];
                 case 1:
                     res = _a.sent();
+                    if (!res)
+                        return [2 /*return*/, undefined];
                     value = JSON.parse(res);
                     return [2 /*return*/, value];
             }

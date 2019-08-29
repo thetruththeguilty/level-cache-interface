@@ -10,6 +10,8 @@ export interface ILevelDB {
 export let levelCacheInterface: IOptions<ILevelDB, any> = {
   getter: async (storage, key) => {
     let res = await storage.get(key)
+      .catch(() => undefined)
+    if (!res) return undefined
     let value = JSON.parse(res)
     return value as IValueWrapper<any>
   },
