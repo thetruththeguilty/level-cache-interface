@@ -32,6 +32,10 @@ const { createLevelCache } = require('../index')
 let db = levelup(leveldown('level-db'))
 let dbCache = createLevelCache(db)
 
+function sleep(n) {
+  return new Promise(resolve => setTimeout(resolve, n))
+}
+
 test('save and load', async () => {
   // expect(1).toBe(1)
   let ret = await dbCache.save('name', 'level cache')
@@ -43,4 +47,14 @@ test('save and load', async () => {
       return ret
     })
   expect(ret).toBe('level cache')
+
+  let noValue = await dbCache.save('test', 'foo', 1)
+    .then(() => {
+      return sleep(2 * dbCache.timeDivider())
+    })
+    .then(() => {
+      return dbCache.load('test', 1)
+    })
+  
+  expect(noValue).toBeUndefined()
 })
