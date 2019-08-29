@@ -1,10 +1,10 @@
-import levelup from 'levelup'
-import leveldown from 'leveldown'
+// import levelup from 'levelup'
+// import leveldown from 'leveldown'
 import { IOptions, IValueWrapper, createCache } from 'cache-creator'
  
 export interface ILevelDB {
   get: (key: string) => Promise<string>
-  put: (key: string, value: string) => void
+  put: (key: string, value: string) => Promise<void>
 }
 
 export let levelCacheInterface: IOptions<ILevelDB, any> = {

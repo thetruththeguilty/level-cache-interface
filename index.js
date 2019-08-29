@@ -36,6 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
+// import levelup from 'levelup'
+// import leveldown from 'leveldown'
 var cache_creator_1 = require("cache-creator");
 exports.levelCacheInterface = {
     getter: function (storage, key) { return __awaiter(_this, void 0, void 0, function () {
